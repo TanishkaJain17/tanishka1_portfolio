@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanishka Jain — AI & Web Developer</title>
+  <meta name="description" content="Tanishka Jain, B.Tech CSE at Shiv Nadar University. Builds AI systems, web applications, and real-world solutions. Open to internships Summer 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f4ef;
+      --ink: #1a1814;
+      --ink-soft: #4a4640;
+      --ink-muted: #7a756c;
+      --teal: #0d5c5c;
+      --teal-light: #e8f4f4;
+      --amber: #b45309;
+      --amber-light: #fef3e2;
+      --line: #ddd6cb;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(26, 24, 20, 0.06);
+      --shadow-lg: 0 12px 40px rgba(26, 24, 20, 0.1);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --nav-w: 220px;
+      --font: "Plus Jakarta Sans", system-ui, sans-serif;
+      --serif: "Instrument Serif", Georgia, serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .sidebar { position: fixed; left: 0; top: 0; width: var(--nav-w); height: 100vh; padding: 32px 24px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); background: var(--white); z-index: 100; }
+    .brand-mark { font-size: 1.5rem; font-weight: 800; color: var(--teal); }
+    .brand-sub { font-size: 0.7rem; color: var(--ink-muted); margin-top: 4px; font-weight: 500; }
+    .nav-menu { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .nav-menu a { display: block; padding: 10px 14px; font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); border-radius: 8px; transition: background 0.2s, color 0.2s; }
+    .nav-menu a:hover, .nav-menu a.active { background: var(--teal-light); color: var(--teal); }
+    .sidebar-footer { font-size: 0.72rem; color: var(--ink-muted); }
+    .sidebar-footer a { color: var(--teal); font-weight: 600; }
+    .mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--line); padding: 10px 8px; z-index: 100; justify-content: space-around; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); }
+    .mobile-bar a { font-size: 0.65rem; font-weight: 600; color: var(--ink-muted); padding: 6px 8px; border-radius: 8px; }
+    .mobile-bar a.active { color: var(--teal); background: var(--teal-light); }
+    .main { margin-left: var(--nav-w); min-height: 100vh; }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 48px; }
+    section, .hero { padding: 88px 0; border-bottom: 1px solid var(--line); }
+    .hero { padding: 72px 0 64px; }
+    #contact { border-bottom: none; }
+    .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+    .section-heading { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 400; line-height: 1.15; margin-bottom: 40px; }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: end; }
+    .status-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--amber-light); color: var(--amber); font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 100px; margin-bottom: 24px; }
+    .status-dot { width: 8px; height: 8px; background: var(--amber); border-radius: 50%; animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 4.5rem); font-weight: 400; line-height: 1.05; margin-bottom: 16px; }
+    .hero h1 em { font-style: italic; color: var(--teal); }
+    .hero-role { font-size: 1.05rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 20px; min-height: 1.5em; }
+    .hero-lead { font-size: 1.05rem; color: var(--ink-soft); max-width: 540px; line-height: 1.75; margin-bottom: 28px; }
+    .hero-lead strong { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; padding: 12px 24px; font-size: 0.88rem; font-weight: 600; border-radius: 8px; transition: transform 0.15s, box-shadow 0.2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-solid { background: var(--teal); color: var(--white); box-shadow: var(--shadow); }
+    .btn-ghost { background: var(--white); border: 1.5px solid var(--line); }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+    .hero-metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; min-width: 220px; }
+    .metric { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 16px; text-align: center; box-shadow: var(--shadow); }
+    .metric-value { font-size: 1.5rem; font-weight: 800; color: var(--teal); }
+    .metric-label { font-size: 0.68rem; color: var(--ink-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .tag { font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); background: var(--white); border: 1px solid var(--line); padding: 6px 14px; border-radius: 100px; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+    .about-text p { font-size: 1rem; color: var(--ink-soft); margin-bottom: 18px; line-height: 1.8; }
+    .about-text p strong { color: var(--ink); }
+    .about-highlight { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .about-highlight blockquote { font-family: var(--serif); font-size: 1.35rem; font-style: italic; line-height: 1.45; margin-bottom: 16px; }
+    .about-highlight cite { font-size: 0.8rem; font-style: normal; font-weight: 600; color: var(--ink-muted); }
+    .skills-bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .skill-block { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+    .skill-block:hover { border-color: var(--teal); transform: translateY(-2px); }
+    .skill-block.wide { grid-column: span 2; }
+    .skill-block.full { grid-column: span 3; }
+    .skill-block h3 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 12px; }
+    .skill-block ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-block li { font-size: 0.8rem; font-weight: 500; color: var(--ink-soft); background: var(--paper); padding: 4px 10px; border-radius: 6px; }
+    .project-list { display: flex; flex-direction: column; gap: 24px; }
+    .project-item { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; display: grid; grid-template-columns: auto 1fr; gap: 24px; box-shadow: var(--shadow); transition: box-shadow 0.25s; }
+    .project-item:hover { box-shadow: var(--shadow-lg); }
+    .project-num { font-size: 2.5rem; font-weight: 800; color: var(--line); line-height: 1; }
+    .project-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .project-head h3 { font-size: 1.25rem; font-weight: 700; }
+    .project-date { font-size: 0.78rem; font-weight: 600; color: var(--ink-muted); }
+    .project-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .badge { font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; }
+    .badge-impact { background: var(--teal-light); color: var(--teal); }
+    .badge-focus { background: var(--amber-light); color: var(--amber); }
+    .project-body { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+    .project-tech span { font-size: 0.75rem; font-weight: 600; color: var(--ink-muted); border: 1px solid var(--line); padding: 3px 10px; border-radius: 4px; }
+    .lead-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .lead-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; transition: border-color 0.2s; }
+    .lead-card:hover { border-color: var(--teal); }
+    .lead-card header { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .lead-card h3 { font-size: 0.95rem; font-weight: 700; }
+    .lead-card .when { font-size: 0.72rem; font-weight: 600; color: var(--teal); white-space: nowrap; }
+    .lead-card .org { font-size: 0.8rem; font-weight: 600; color: var(--ink-muted); margin-bottom: 10px; }
+    .lead-card p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.65; }
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+    .timeline-item { position: relative; margin-bottom: 24px; padding: 20px 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+    .timeline-item::before { content: ""; position: absolute; left: -28px; top: 24px; width: 12px; height: 12px; background: var(--teal); border: 3px solid var(--paper); border-radius: 50%; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+    .timeline-top h3 { font-size: 1rem; font-weight: 700; }
+    .timeline-top span { font-size: 0.78rem; font-weight: 600; color: var(--teal); }
+    .timeline-degree { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 4px; }
+    .timeline-detail { font-size: 0.85rem; font-weight: 600; color: var(--amber); }
+    .ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
+    .ach-item { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+    .ach-item.span-2 { grid-column: span 2; }
+    .ach-item h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .ach-item p { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.5; }
+    .cert-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .cert-chip { flex: 1; min-width: 200px; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 20px; }
+    .cert-chip strong { display: block; font-size: 0.9rem; margin-bottom: 4px; }
+    .cert-chip span { font-size: 0.78rem; color: var(--ink-muted); }
+    .interest-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+    .interest-cloud span { font-size: 0.85rem; padding: 8px 16px; background: var(--white); border: 1px solid var(--line); border-radius: 100px; color: var(--ink-soft); }
+    .contact-panel { background: var(--teal); color: var(--white); border-radius: var(--radius-lg); padding: 48px; text-align: center; }
+    .contact-panel h2 { font-family: var(--serif); font-size: 2.25rem; font-weight: 400; margin-bottom: 12px; }
+    .contact-panel > p { font-size: 1rem; opacity: 0.9; max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .contact-links a { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 12px 20px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; }
+    .contact-links a:hover { background: rgba(255,255,255,0.25); }
+    .site-footer { text-align: center; padding: 32px; font-size: 0.78rem; color: var(--ink-muted); }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 960px) {
+      .sidebar { display: none; }
+      .mobile-bar { display: flex; }
+      .main { margin-left: 0; padding-bottom: 72px; }
+      .container { padding: 0 24px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-metrics { grid-template-columns: repeat(4, 1fr); }
+      .about-grid, .skills-bento, .lead-grid, .ach-grid { grid-template-columns: 1fr; }
+      .skill-block.wide, .skill-block.full, .ach-item.span-2 { grid-column: span 1; }
+      .project-item { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+      section, .hero { padding: 64px 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .status-dot { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div>
+      <a href="#home" class="brand">
+        <div class="brand-mark">TJ</div>
+        <div class="brand-sub">Tanishka Jain</div>
+      </a>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#home" data-nav>Home</a></li>
+      <li><a href="#about" data-nav>About</a></li>
+      <li><a href="#skills" data-nav>Skills</a></li>
+      <li><a href="#projects" data-nav>Projects</a></li>
+      <li><a href="#leadership" data-nav>Leadership</a></li>
+      <li><a href="#education" data-nav>Education</a></li>
+      <li><a href="#achievements" data-nav>Achievements</a></li>
+      <li><a href="#contact" data-nav>Contact</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <p>B.Tech CSE · SNU</p>
+      <p><a href="mailto:tjain5280@gmail.com">tjain5280@gmail.com</a></p>
+    </div>
+  </aside>
+
+  <nav class="mobile-bar">
+    <a href="#home" data-nav>Home</a>
+    <a href="#projects" data-nav>Work</a>
+    <a href="#leadership" data-nav>Lead</a>
+    <a href="#contact" data-nav>Contact</a>
+  </nav>
+
+  <div class="main">
+
+    <header id="home" class="hero">
+      <div class="container">
+        <div class="hero-inner reveal">
+          <div>
+            <div class="status-pill"><span class="status-dot"></span> Open for Internships · Summer 2026</div>
+            <h1>Tanishka <em>Jain</em></h1>
+            <p class="hero-role" id="heroRole" aria-live="polite"></p>
+            <p class="hero-lead">
+              I build <strong>intelligent systems and web products</strong> that solve real problems — from edge AI and computer vision on Raspberry Pi to structured, production-ready web foundations. With a <strong>9.45 SGPA</strong>, Dean's List honours, and national competition experience, I bring <strong>systems thinking</strong>, a <strong>product mindset</strong>, and <strong>cross-functional collaboration</strong> to every project.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-solid">View Projects</a>
+              <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+            </div>
+            <div class="hero-tags">
+              <span class="tag">AI & Machine Learning</span>
+              <span class="tag">Web Development</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">IoT</span>
+              <span class="tag">Problem Solving</span>
+            </div>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric"><div class="metric-value">99%</div><div class="metric-label">ISC Class XII</div></div>
+            <div class="metric"><div class="metric-value">9.45</div><div class="metric-label">SGPA · Dean's List</div></div>
+            <div class="metric"><div class="metric-value">0.1%</div><div class="metric-label">Physics · CISCE</div></div>
+            <div class="metric"><div class="metric-value">2</div><div class="metric-label">IIT Competitions</div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container reveal">
+        <p class="section-label">01 — About</p>
+        <h2 class="section-heading">Engineering with purpose</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a <strong>Computer Science Engineering student</strong> at Shiv Nadar University (Class of 2029) who designs technology at the intersection of <strong>AI, web development, and real-world impact</strong>. My work ranges from deploying an AI–IoT safety pipeline to leading campus initiatives that demand coordination, creativity, and execution under pressure.</p>
+            <p>Academically, I've earned <strong>Dean's List recognition with a 9.45 SGPA</strong> and competed nationally at <strong>IIT Kharagpur</strong> and <strong>IIT Guwahati</strong>. I approach engineering with clear problem framing, iterative delivery, and an eye on how systems behave beyond the demo stage.</p>
+            <p>What sets me apart is the ability to <strong>bridge technical depth with leadership</strong> — writing ML pipelines, building responsive interfaces, and aligning cross-functional teams. I'm seeking an internship where I can contribute from day one and grow alongside meaningful product work.</p>
+          </div>
+          <aside class="about-highlight">
+            <blockquote>"The best technology doesn't just work — it solves problems that matter."</blockquote>
+            <cite>— Tanishka Jain · Builder · Leader · CSE @ SNU</cite>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container reveal">
+        <p class="section-label">02 — Skills</p>
+        <h2 class="section-heading">Tools & strengths</h2>
+        <div class="skills-bento">
+          <div class="skill-block"><h3>Languages</h3><ul><li>Python</li><li>Java</li><li>C</li><li>JavaScript</li><li>HTML/CSS</li><li>SQL</li><li>MATLAB</li></ul></div>
+          <div class="skill-block"><h3>Technologies</h3><ul><li>Git & GitHub</li><li>OpenCV</li><li>Raspberry Pi</li><li>IoT</li><li>Linux/Bash</li><li>Codespaces</li></ul></div>
+          <div class="skill-block"><h3>AI & Data</h3><ul><li>Machine Learning</li><li>Computer Vision</li><li>YOLOv3/CNN</li><li>Data Analysis</li><li>Data Science</li></ul></div>
+          <div class="skill-block wide"><h3>Creative</h3><ul><li>Canva</li><li>Adobe Premiere Pro</li><li>UI/UX</li><li>Video Editing</li><li>Content Creation</li></ul></div>
+          <div class="skill-block"><h3>Web</h3><ul><li>Responsive Design</li><li>Front-end Dev</li><li>DSA</li></ul></div>
+          <div class="skill-block full"><h3>Professional</h3><ul><li>Cross-functional Collaboration</li><li>Product Mindset</li><li>Systems Thinking</li><li>Problem Solving</li><li>Leadership</li><li>Event Management</li><li>Strategic Communication</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container reveal">
+        <p class="section-label">03 — Projects</p>
+        <h2 class="section-heading">Selected work</h2>
+        <div class="project-list">
+          <article class="project-item">
+            <div class="project-num">01</div>
+            <div>
+              <div class="project-head"><h3>InsightX: Dog Detection & Alert System</h3><span class="project-date">Sep 2025 – May 2026</span></div>
+              <div class="project-badges">
+                <span class="badge badge-impact">Impact: Automated real-time safety alerts from live feeds</span>
+                <span class="badge badge-focus">Focus: Edge AI · Computer Vision · IoT</span>
+              </div>
+              <p class="project-body">Engineered an end-to-end pipeline that detects stray dogs in live camera feeds and triggers email alerts — cutting manual monitoring effort. Deployed YOLOv3-Tiny with CNN inference on Raspberry Pi, integrating OpenCV, SMTP, and SSH for reliable edge-to-inbox delivery across hardware, ML, and networking layers.</p>
+              <div class="project-tech"><span>Python</span><span>OpenCV</span><span>YOLOv3-Tiny</span><span>CNN</span><span>Raspberry Pi</span><span>IoT</span><span>SMTP</span></div>
+            </div>
+          </article>
+          <article class="project-item">
+            <div class="project-num">02</div>
+            <div>
+              <div class="project-head"><h3>Linux Bash Boilerplate Project</h3><span class="project-date">May 2026</span></div>
+              <div class="project-badges">
+                <span class="badge badge-impact">Impact: Standardised repeatable web project setup via CLI</span>
+                <span class="badge badge-focus">Focus: Bash Automation · Dev Workflows · Web Foundations</span>
+              </div>
+              <p class="project-body">Built a structured, reusable website boilerplate using Linux/Bash and GitHub Codespaces (freeCodeCamp), reinforcing professional CLI workflows, version control discipline, and deployment-ready project structure for modern engineering teams.</p>
+              <div class="project-tech"><span>Linux</span><span>Bash</span><span>CLI</span><span>GitHub</span><span>Codespaces</span><span>Web Dev</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <div class="container reveal">
+        <p class="section-label">04 — Leadership</p>
+        <h2 class="section-heading">Leadership & involvement</h2>
+        <div class="lead-grid">
+          <article class="lead-card">
+            <header><h3>Technical Team Member & Event Manager</h3><span class="when">Sep 2025 – Present</span></header>
+            <p class="org">ACM-W · Shiv Nadar Institution of Eminence Chapter</p>
+            <p>Drive planning and execution of technical workshops and speaker sessions. Coordinate cross-functional alignment across academic, technical, and outreach teams to grow women-in-computing engagement at SNU.</p>
+          </article>
+          <article class="lead-card">
+            <header><h3>Event & Operations Coordinator</h3><span class="when">Mar – Apr 2026</span></header>
+            <p class="org">Career Development Centre (CDC) · Shiv Nadar University</p>
+            <p>Spearheaded CDC's SNU Day stall from concept through on-ground execution — managing logistics, team alignment, and real-time problem solving for a high-visibility student event.</p>
+          </article>
+          <article class="lead-card">
+            <header><h3>Event Manager — HackData</h3><span class="when">Mar 2026</span></header>
+            <p class="org">Shiv Nadar University</p>
+            <p>Orchestrated end-to-end operations for a data and tech hackathon — scheduling, participant communication, and live coordination from kickoff to close.</p>
+          </article>
+          <article class="lead-card">
+            <header><h3>Decor Team Member</h3><span class="when">Nov 2025</span></header>
+            <p class="org">Cultural Committee · Shiv Nadar University</p>
+            <p>Contributed creative direction and hands-on execution for university cultural events — translating themes into cohesive visual experiences through collaborative design.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container reveal">
+        <p class="section-label">05 — Education</p>
+        <h2 class="section-heading">Academic background</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-top"><h3>Shiv Nadar University</h3><span>Aug 2025 – Aug 2029</span></div>
+            <p class="timeline-degree">B.Tech Computer Science Engineering</p>
+            <p class="timeline-detail">SGPA 9.45 · Dean's List Semester 1 (2026) · ACM-W & CDC</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-top"><h3>St. Paul's Church College Unit-2</h3><span>April 2025</span></div>
+            <p class="timeline-degree">ISC Class XII — PCM + Computer Science</p>
+            <p class="timeline-detail">99% · Agra Topper & School Topper · Top 0.1% Physics (CISCE)</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-top"><h3>St. Paul's Church College Unit-2</h3><span>May 2023</span></div>
+            <p class="timeline-degree">ICSE Class X</p>
+            <p class="timeline-detail">95.6%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <div class="container reveal">
+        <p class="section-label">06 — Recognition</p>
+        <h2 class="section-heading">Achievements & certifications</h2>
+        <div class="ach-grid">
+          <div class="ach-item"><h4>Top 0.1% · Physics</h4><p>CISCE Certificate of Merit · ISC 2025</p></div>
+          <div class="ach-item"><h4>Agra & School Topper</h4><p>ISC Class XII · 99%</p></div>
+          <div class="ach-item"><h4>Dean's List</h4><p>SNU · 9.45 SGPA · 2026</p></div>
+          <div class="ach-item"><h4>School Scholar</h4><p>5 consecutive years</p></div>
+          <div class="ach-item"><h4>1st · Math-a-Mosaic</h4><p>Analytical reasoning & problem solving</p></div>
+          <div class="ach-item"><h4>Runner-Up · Pictomania</h4><p>TechnoFi · Photography · Sep 2024</p></div>
+          <div class="ach-item span-2"><h4>National Competitions</h4><p>Crack The Case — IIT Kharagpur · ProduScope 2025 — IIT Guwahati</p></div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-chip"><strong>HTML, CSS & JavaScript</strong><span>SoloLearn & CodeDex</span></div>
+          <div class="cert-chip"><strong>SQL</strong><span>SoloLearn & CodeDex</span></div>
+          <div class="cert-chip"><strong>Generative AI</strong><span>LinkedIn Learning</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests">
+      <div class="container reveal">
+        <p class="section-label">07 — Beyond code</p>
+        <h2 class="section-heading">Interests</h2>
+        <div class="interest-cloud">
+          <span>AI & Emerging Tech</span><span>Web Development</span><span>Open Source</span>
+          <span>Digital Marketing</span><span>Content Creation</span><span>Visual Storytelling</span>
+          <span>Painting</span><span>Dance</span><span>Videography</span><span>Design Thinking</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="contact-panel">
+          <h2>Let's build something meaningful</h2>
+          <p>I'm actively seeking internship roles in AI, web development, product, and tech. Reach out if you're looking for a motivated engineer with strong execution and leadership.</p>
+          <div class="contact-links">
+            <a href="mailto:tjain5280@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/tanishka-jain-66706b390" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/tanishkajain17" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="tel:+919528318250">+91 9528318250</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© 2026 Tanishka Jain · Shiv Nadar University · B.Tech CSE</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const navLinks = document.querySelectorAll("[data-nav]");
+      const sections = document.querySelectorAll("section[id], header[id]");
+
+      function updateActiveNav() {
+        let current = "";
+        sections.forEach(function (s) {
+          if (window.scrollY >= s.offsetTop - 120) current = s.id;
+        });
+        navLinks.forEach(function (link) {
+          link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+        });
+      }
+      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      updateActiveNav();
+
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        revealObserver.observe(el);
+      });
+
+      var roleEl = document.getElementById("heroRole");
+      if (!roleEl) return;
+      var roles = [
+        "AI & Computer Vision Engineer",
+        "Full-Stack Web Developer",
+        "Systems & IoT Builder",
+        "Product-Minded Technologist"
+      ];
+      var roleIdx = 0, charIdx = 0, deleting = false;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        roleEl.textContent = roles[0];
+        return;
+      }
+      function tick() {
+        var word = roles[roleIdx];
+        if (!deleting) {
+          charIdx++;
+          roleEl.textContent = word.slice(0, charIdx);
+          if (charIdx === word.length) {
+            deleting = true;
+            setTimeout(tick, 2000);
+            return;
+          }
+          setTimeout(tick, 70);
+          return;
+        }
+        charIdx--;
+        roleEl.textContent = word.slice(0, charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          roleIdx = (roleIdx + 1) % roles.length;
+          setTimeout(tick, 40);
+          return;
+        }
+        setTimeout(tick, 40);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
